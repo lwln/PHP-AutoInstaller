@@ -1,4 +1,5 @@
 @ECHO OFF
+REM  --> Test.
 REM  --> Check for permissions
 >nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
 
