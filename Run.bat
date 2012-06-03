@@ -22,23 +22,18 @@ if '%errorlevel%' NEQ '0' (
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "Path" /t REG_EXPAND_SZ /d "%PATH%;%HOMEDRIVE%\php" /f
 cls
 echo Succesfully edited path.
-pause
 
 mkdir temp
 bins\wget -P temp/ http://www.yufexa.com/test/phplist/
-cls
 bins\cat temp/index.html > temp/tmpFile
 set /p tmpVar=<temp/tmpFile
-cls
 bins\wget %tmpVar%
-cls
 rd /s /q temp
 mkdir php
 bins\7za x -ophp *.zip
 del *.zip
 copy config\php.ini php\php.ini
 
-cls
 echo Press 'D'
 mkdir %HOMEDRIVE%\php
 xcopy php "%HOMEDRIVE%\php" /S
