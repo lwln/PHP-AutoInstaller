@@ -43,4 +43,6 @@ rd /s /q php
 cls
 echo Succesfully completed.
 echo You will have to restart your computer at your own discretion. Thank you.
+echo.
+echo If you have any questions or concerns, please contact =oxai on deviantART.
 pause
