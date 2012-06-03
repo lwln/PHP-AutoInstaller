@@ -25,16 +25,16 @@ echo Succesfully edited path.
 pause
 
 mkdir temp
-bin\wget -P temp/ http://www.yufexa.com/test/phplist/
+bins\wget -P temp/ http://www.yufexa.com/test/phplist/
 cls
-bin\cat temp/index.html > temp/tmpFile
+bins\cat temp/index.html > temp/tmpFile
 set /p tmpVar=<temp/tmpFile
 cls
-bin\wget %tmpVar%
+bins\wget %tmpVar%
 cls
 rd /s /q temp
 mkdir php
-bin\7za x -ophp *.zip
+bins\7za x -ophp *.zip
 del *.zip
 copy config\php.ini php\php.ini
 
