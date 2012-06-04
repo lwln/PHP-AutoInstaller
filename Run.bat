@@ -41,7 +41,7 @@ cls
 
 :skipreg
 mkdir temp
-bins\wget -P temp/ http://www.yufexa.com/test/phplist/
+bins\wget -P temp/ http://www.yufexa.com/upload/PHP-AutoInstaller/
 bins\cat temp/index.html > temp/tmpFile
 set /p tmpVar=<temp/tmpFile
 
