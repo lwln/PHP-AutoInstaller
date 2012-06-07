@@ -1,31 +1,30 @@
 @ECHO OFF
-REM  --> Check for permissions
+title PHP AutoInstaller
 >nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
 
-REM --> If error flag set, we do not have admin.
 if '%errorlevel%' NEQ '0' (
-    echo Requesting administrative privileges...
-    goto UACPrompt
+	echo Requesting administrative privileges...
+	goto UACPrompt
 ) else ( goto gotAdmin )
 
 :UACPrompt
-    echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
-    echo UAC.ShellExecute "%~s0", "", "", "runas", 1 >> "%temp%\getadmin.vbs"
+echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
+echo UAC.ShellExecute "%~s0", "", "", "runas", 1 >> "%temp%\getadmin.vbs"
 
-    "%temp%\getadmin.vbs"
-    exit /B
+"%temp%\getadmin.vbs"
+exit /B
 
 :gotAdmin
-    if exist "%temp%\getadmin.vbs" ( del "%temp%\getadmin.vbs" )
-    pushd "%CD%"
-    CD /D "%~dp0"
+if exist "%temp%\getadmin.vbs" ( del "%temp%\getadmin.vbs" )
+pushd "%CD%"
+CD /D "%~dp0"
 
 echo This program will modify your registry/PATH. If you have any questions regarding what this program does specifically, please ask =oxai on deviantART.
 echo.
 :choice
 set /p choice="Do you want to continue? [Y\N\S (skips modifying the registry)] "
-if '%choice%'=='n' goto :quit
-if '%choice%'=='N' goto :quit
+if '%choice%'=='n' goto :cancel
+if '%choice%'=='N' goto :cancel
 if '%choice%'=='y' goto :continue
 if '%choice%'=='Y' goto :continue
 if '%choice%'=='s' goto :skipreg
@@ -33,6 +32,7 @@ if '%choice%'=='S' goto :skipreg
 if '%choice%'=='skip' goto :skipreg
 echo.
 echo %choice% is not a valid choice.
+echo.
 goto :choice
 
 :continue
@@ -66,4 +66,10 @@ echo.
 echo If you have any questions or concerns, please contact =oxai on deviantART.
 pause
 :quit
+exit
+
+:cancel
+echo.
+echo You have cancelled the installer.
+pause
 exit
