@@ -1,5 +1,4 @@
 @ECHO OFF
-REM Test.
 title PHP AutoInstaller
 >nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
 
